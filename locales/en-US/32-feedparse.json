@@ -1,0 +1,14 @@
+{
+    "feedparse": {
+        "label": {
+            "feedurl": "Feed url",
+            "refresh": "Refresh",
+            "minutes": "minutes",
+            "encode": "encoding"
+        },
+        "errors": {
+            "badstatuscode": "error - Bad status code",
+            "invalidurl": "Invalid url"
+        }
+    }
+}
