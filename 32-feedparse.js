@@ -3,7 +3,7 @@ module.exports = function(RED) {
     var FeedParser = require("feedparser");
     var request = require("request");
     var url = require('url');
-    var iconv = require('iconv');
+    var iconv = require('iconv-lite');
 
     function FeedParseNode(n) {
         RED.nodes.createNode(this,n);
@@ -55,11 +55,14 @@ module.exports = function(RED) {
                             node.seen[article.guid] = article.date?article.date.getTime():0;
                             if(node.conv !== undefined){
                                 var title = new Buffer(article.title, 'binary');
-                                article.title = node.conv.convert(title).toString();
+                                // article.title = node.conv.convert(title).toString();
+                                article.title = iconv.decode(title,node.encode);
                                 var summary = new Buffer(article.summary, 'binary');
-                                article.summary = node.conv.convert(summary).toString();
+                                // article.summary = node.conv.convert(summary).toString();
+                                article.summary = iconv.decode(summary,node.encode);
                                 var description  = new Buffer(article.description, 'binary');
-                                article.description = node.conv.convert(description).toString();
+                                // article.description = node.conv.convert(description).toString();
+                                article.description = iconv.decode(description,node.encode);
                             }
                             var msg = {
                                 topic: article.origlink || article.link,
