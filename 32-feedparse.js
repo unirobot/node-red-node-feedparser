@@ -21,10 +21,10 @@ module.exports = function(RED) {
         else {
             var getFeed = function() {
                 var req;
-                if(node.encode.length >0){
-                    req = request(node.url, {timeout: 10000, pool: false});
-                }else{
+                if(node.encode.length > 0){
                     req = request({url: node.url, encoding: 'binary', timeout: 10000, pool: false});
+                }else{
+                    req = request(node.url, {timeout: 10000, pool: false});
                 }
                 //req.setMaxListeners(50);
                 //req.setHeader('user-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
