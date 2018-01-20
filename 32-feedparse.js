@@ -14,14 +14,14 @@ module.exports = function(RED) {
         this.interval_id = null;
         this.seen = {};
         this.conv;
-        if(node.encode.length > 0){
-            try {
-                this.conv = new iconv.Iconv(node.encode, 'UTF-8//TRANSLIT//IGNORE');
-            } catch (err) {
-                this.error(err);
-                return;
-            }
-        }
+        // if(node.encode.length > 0){
+        //     try {
+        //         this.conv = new iconv.Iconv(node.encode, 'UTF-8//TRANSLIT//IGNORE');
+        //     } catch (err) {
+        //         this.error(err);
+        //         return;
+        //     }
+        // }
         var parsedUrl = url.parse(this.url);
         if (!(parsedUrl.host || (parsedUrl.hostname && parsedUrl.port)) && !parsedUrl.isUnix) {
             this.error(RED._("feedparse.errors.invalidurl"));
@@ -29,7 +29,8 @@ module.exports = function(RED) {
         else {
             var getFeed = function() {
                 var req;
-                if(node.conv === undefined){
+                // if(node.conv === undefined){
+                if(node.encode.length >0){
                     req = request(node.url, {timeout: 10000, pool: false});
                 }else{
                     req = request({url: node.url, encoding: 'binary', timeout: 10000, pool: false});
