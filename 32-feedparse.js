@@ -14,14 +14,6 @@ module.exports = function(RED) {
         this.interval_id = null;
         this.seen = {};
         this.conv;
-        // if(node.encode.length > 0){
-        //     try {
-        //         this.conv = new iconv.Iconv(node.encode, 'UTF-8//TRANSLIT//IGNORE');
-        //     } catch (err) {
-        //         this.error(err);
-        //         return;
-        //     }
-        // }
         var parsedUrl = url.parse(this.url);
         if (!(parsedUrl.host || (parsedUrl.hostname && parsedUrl.port)) && !parsedUrl.isUnix) {
             this.error(RED._("feedparse.errors.invalidurl"));
@@ -29,7 +21,6 @@ module.exports = function(RED) {
         else {
             var getFeed = function() {
                 var req;
-                // if(node.conv === undefined){
                 if(node.encode.length >0){
                     req = request(node.url, {timeout: 10000, pool: false});
                 }else{
@@ -54,15 +45,12 @@ module.exports = function(RED) {
                     while (article = stream.read()) {  // jshint ignore:line
                         if (!(article.guid in node.seen) || ( node.seen[article.guid] !== 0 && node.seen[article.guid] != article.date.getTime())) {
                             node.seen[article.guid] = article.date?article.date.getTime():0;
-                            if(node.conv !== undefined){
+                            if(node.encode.length > 0){
                                 var title = new Buffer(article.title, 'binary');
-                                // article.title = node.conv.convert(title).toString();
                                 article.title = iconv.decode(title,node.encode);
                                 var summary = new Buffer(article.summary, 'binary');
-                                // article.summary = node.conv.convert(summary).toString();
                                 article.summary = iconv.decode(summary,node.encode);
                                 var description  = new Buffer(article.description, 'binary');
-                                // article.description = node.conv.convert(description).toString();
                                 article.description = iconv.decode(description,node.encode);
                             }
                             var msg = {
