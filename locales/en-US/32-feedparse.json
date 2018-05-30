@@ -1,14 +1,16 @@
 {
     "feedparse": {
+        "feedparse": "feedparser",
         "label": {
             "feedurl": "Feed url",
             "refresh": "Refresh",
-            "minutes": "minutes",
-            "encode": "encoding"
+            "encode": "encode",
+            "minutes": "minutes"
         },
         "errors": {
             "badstatuscode": "error - Bad status code",
-            "invalidurl": "Invalid url"
+            "invalidurl": "Invalid url",
+            "invalidinterval": "Repeat interval too large"
         }
     }
 }
