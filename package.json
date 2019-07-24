@@ -34,5 +34,8 @@
     "nodes": {
       "feedparse": "32-feedparse.js"
     }
+  },
+  "engines": {
+    "node": ">=8.0.0"
   }
 }
