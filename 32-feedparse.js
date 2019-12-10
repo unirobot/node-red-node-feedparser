@@ -29,7 +29,7 @@ module.exports = function(RED) {
                 }
                 //req.setMaxListeners(50);
                 req.setHeader('user-agent', 'Mozilla/5.0 (Node-RED)');
-                req.setHeader('accept', 'text/html,application/xhtml+xml');
+                req.setHeader('accept', 'application/rss+xml,text/html,application/xhtml+xml');
 
                 var feedparser = new FeedParser();
 
@@ -46,11 +46,11 @@ module.exports = function(RED) {
                     var stream = this, article;
                     while (article = stream.read()) {  // jshint ignore:line
                         if(node.encode.length > 0){
-                            var title = new Buffer(article.title, 'binary');
+                            var title = Buffer.from(article.title, 'binary');
                             article.title = iconv.decode(title,node.encode);
-                            var summary = new Buffer(article.summary, 'binary');
+                            var summary = Buffer.from(article.summary, 'binary');
                             article.summary = iconv.decode(summary,node.encode);
-                            var description  = new Buffer(article.description, 'binary');
+                            var description  = Buffer.from(article.description, 'binary');
                             article.description = iconv.decode(description,node.encode);
                         }
                         if (!(article.guid in node.seen) || ( node.seen[article.guid] !== 0 && node.seen[article.guid] != article.date.getTime())) {
