@@ -4,8 +4,8 @@
   "description": "A Node-RED node to get RSS Atom feeds.",
   "dependencies": {
     "feedparser": "^2.2.9",
-    "request": "^2.88.0",
-    "iconv-lite": "^0.4.23"
+    "iconv-lite": "^0.5.0",
+    "request": "^2.88.0"
   },
   "repository": {
     "type": "git",
@@ -25,8 +25,8 @@
     "grunt-mocha-istanbul": "^5.0.2",
     "grunt-simple-mocha": "^0.4.1",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^6.1.4",
-    "node-red": "^0.20.7",
+    "mocha": "^6.2.2",
+    "node-red": "^0.20.8",
     "node-red-node-test-helper": "^0.2.3",
     "should": "^13.2.3"
   },
