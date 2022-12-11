@@ -26,8 +26,8 @@
     "grunt-simple-mocha": "^0.4.1",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^6.2.2",
-    "node-red": "^0.20.8",
-    "node-red-node-test-helper": "^0.2.3",
+    "node-red": "^3.0.2",
+    "node-red-node-test-helper": "^0.3.0",
     "should": "^13.2.3"
   },
   "node-red": {
